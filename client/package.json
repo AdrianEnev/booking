@@ -1,0 +1,44 @@
+{
+  "name": "booking",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "react-router build && node netlify/prepare.js",
+    "dev": "vite",
+    "start": "netlify serve",
+    "typecheck": "react-router typegen && tsc"
+  },
+  "dependencies": {
+    "@netlify/functions": "3.1.2",
+    "@react-router/node": "^7.5.3",
+    "dotenv": "^16.5.0",
+    "firebase": "^11.7.1",
+    "firebase-admin": "^13.3.0",
+    "framer-motion": "^12.10.4",
+    "isbot": "^5.1.27",
+    "mapillary-js": "^4.1.2",
+    "react": "^19.1.0",
+    "react-calendar": "^5.1.0",
+    "react-dom": "^19.1.0",
+    "react-router": "^7.5.3",
+    "swiper": "^11.2.6"
+  },
+  "devDependencies": {
+    "@mjackson/node-fetch-server": "0.6.1",
+    "@react-router/dev": "^7.5.3",
+    "@tailwindcss/vite": "^4.1.4",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.15.17",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "cross-env": "^7.0.3",
+    "express": "^5.1.0",
+    "netlify-cli": "^20.1.1",
+    "tailwindcss": "^4.1.4",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.3",
+    "vite-tsconfig-paths": "^5.1.4"
+  }
+}

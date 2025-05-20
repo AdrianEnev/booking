@@ -1,0 +1,21 @@
+.DS_Store
+/node_modules/
+
+# React Router
+/.react-router/
+/build/
+
+# Netlify
+.netlify
+
+# Environment files
+client/.env
+server/.envclient/.env
+server/.env
+client/.env
+server/.env
+node_modules/
+.DS_Store
+
+# All json files in server/config (firebase-admin config, etc...)
+server/config/*.json

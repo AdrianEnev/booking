@@ -1,0 +1,99 @@
+@import "tailwindcss";
+/*@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+*/
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-manrope: "Manrope", ui-sans-serif, system-ui, sans-serif,
+}
+
+html,
+body {
+    @apply bg-white dark:bg-gray-950 select-none;
+
+    @media (prefers-color-scheme: dark) {
+        color-scheme: dark;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        @apply p-3 text-white rounded-full;  /* Default color */
+        color: white;  /* Text color */
+    }
+
+    /* Swiper button hover effect, only used regular css due to the transition */
+    .swiper-pagination-bullet {
+        width: 0.75rem; /* Tailwind class w-3 */
+        height: 0.75rem; /* Tailwind class h-3 */
+        background-color: #9ca3af; /* Tailwind class bg-gray-400 */
+        border-radius: 9999px; /* Tailwind class rounded-full */
+        transition: background-color 0.3s ease; /* Smooth transition for color change */
+    }
+    
+    /* Style for active pagination bullet */
+    .swiper-pagination-bullet-active {
+        @apply bg-red-500; /* Active dot color: blue */
+    }
+
+    .review-box {
+        @apply min-w-[32.5%] h-72 bg-white border border-gray-200 shadow-lg rounded-sm p-3
+    }
+
+    .booking-box {
+        @apply bg-white border border-gray-200 shadow-lg rounded-sm
+    }
+
+    .booked-date {
+        @apply bg-[#ff6b6b] text-white rounded-md line-through;
+        pointer-events: none; /* Prevent interaction */
+    }
+    
+    .react-calendar__tile:focus.booked-date,
+    .react-calendar__tile:active.booked-date {
+        @apply bg-[#ff6b6b] text-white; /* Keep the same style when clicked */
+    }
+
+    /* Base calendar styling */
+    .react-calendar {
+        @apply bg-white rounded-2xl shadow-md p-4 max-w-md text-sm;
+    }
+
+    .weekend-date {
+        @apply text-black bg-white; 
+    }
+    
+    /* Calendar Header navigation */
+    .react-calendar__navigation {
+        @apply flex justify-between items-center mb-4;
+    }
+    .react-calendar__navigation button {
+        @apply text-gray-800 font-semibold hover:text-blue-500;
+    }
+    
+    /* Weekday labels */
+    .react-calendar__month-view__weekdays {
+        @apply grid grid-cols-7 text-center text-gray-500 uppercase text-xs mb-2;
+    }
+    .react-calendar__month-view__weekdays__weekday {
+        @apply py-1;
+    }
+    
+    /* Calendar day tiles */
+    .react-calendar__tile {
+        @apply p-2 rounded-lg transition-colors duration-150 text-center;
+    }
+    
+    .react-calendar__tile:hover {
+        @apply bg-gray-100;
+    }
+
+    .booked-date {
+        @apply bg-[#ff6b6b] text-white rounded-md line-through
+    }
+
+    .react-calendar__tile--now {
+        @apply bg-white text-black hover:bg-gray-100
+    }
+    
+}
