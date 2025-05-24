@@ -3,7 +3,8 @@ import {signInWithEmailAndPassword} from 'firebase/auth'
 import { FIREBASE_AUTH } from '@config/firebaseConfig'
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
-import getUserInfo from '~/use/user/getUserInfo'
+import getUserInfo from '@use/user/getUserInfo'
+import setCurrentUserAdmin from '~/use/user/setCurrentUserAdmin'
 
 const Account = () => {
 
@@ -13,7 +14,7 @@ const Account = () => {
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
 
-    const {loading, setLoading} = useGlobalContext();
+    const {loading, setLoading, setIsAdmin} = useGlobalContext();
 
     const handleFirebaseLogin = (email: string, password: string) => {
 
@@ -23,6 +24,7 @@ const Account = () => {
             console.log('User already logged in')
             return
         }
+        setLoading(true);
         
         signInWithEmailAndPassword(FIREBASE_AUTH, email, password)
         .then(async (userCredential) => {
@@ -32,15 +34,21 @@ const Account = () => {
 
             // show loading screen while retreiving info
             setLoading(true)
-            await getUserInfo(user)
-            setLoading(false)
+            const userInfo = await getUserInfo(user)
+            if (userInfo) {
+                if (userInfo.isAdmin){
+                    navigate('/admin/dashboard');
+                    setLoading(false);
+                    return;
+                }
+            }
 
             navigate('/');
-            
+            setLoading(false)
         })
         .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
+            console.log(error)
+            setLoading(false)
         });
     }
 

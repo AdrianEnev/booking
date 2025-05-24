@@ -21,6 +21,12 @@ const getAppointments = async () => {
                 id: doc.id,
                 appointmentDate: appointmentData.appointmentDate.toDate(),
                 hour: appointmentData.hour,
+                customerEmail: appointmentData.customerEmail,
+                customerName: appointmentData.customerName,
+                customerPhone: appointmentData.customerPhone,
+                note: appointmentData.note,
+                service: appointmentData.service,
+                status: appointmentData.status,
             });
         });
 

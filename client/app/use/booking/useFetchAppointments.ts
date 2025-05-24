@@ -12,7 +12,7 @@ const fetchAppointments = async () => {
         }
 
         const data = await response.json();
-        console.log("Appointments:", data);
+        //console.log("Appointments:", data);
         return data; 
 
     } catch (error) {

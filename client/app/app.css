@@ -10,7 +10,7 @@
 
 html,
 body {
-    @apply bg-white dark:bg-gray-950 select-none;
+    @apply bg-[#f8f8f8] dark:bg-gray-950 select-none;
 
     @media (prefers-color-scheme: dark) {
         color-scheme: dark;
@@ -33,7 +33,7 @@ body {
     
     /* Style for active pagination bullet */
     .swiper-pagination-bullet-active {
-        @apply bg-red-500; /* Active dot color: blue */
+        @apply bg-[#4a6fa5]; /* Active dot color: blue */
     }
 
     .review-box {

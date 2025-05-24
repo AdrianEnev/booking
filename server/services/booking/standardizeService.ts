@@ -1,9 +1,9 @@
 export const standardizeService = (service: string) => {
     switch (service) {
         case 'short_hair':
-            return 'Къса прическа';
+            return 'Къса коса';
         case 'long_hair':
-            return 'Дълга прическа';
+            return 'Дълга коса';
         default:
             return service;
     }

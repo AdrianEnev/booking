@@ -23,7 +23,7 @@ const ImageCarousel = () => {
                         <img 
                             src="../../../assets/short_hair_square.jpg" 
                             alt="Slide 1" 
-                            className='w-auto h-200 rounded-xl'
+                            className='w-auto h-auto rounded-xl'
                         />
                     </SwiperSlide>
 
@@ -31,7 +31,7 @@ const ImageCarousel = () => {
                         <img 
                             src="../../../assets/design_studio_square.jpg" 
                             alt="Slide 2" 
-                            className='w-auto h-200 rounded-xl'
+                            className='w-auto h-auto rounded-xl'
                         />
                     </SwiperSlide>
             </Swiper>

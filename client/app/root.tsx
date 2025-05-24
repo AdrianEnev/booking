@@ -13,7 +13,11 @@ import "./app.css";
 import Header from "./components/header/Header";
 import { useEffect, useState } from "react";
 import { GlobalProvider, useGlobalContext } from "@config/GlobalContext";
-import fetchAppointments from "~/use/booking/useFetchAppointments";
+import fetchAppointments from "@use/booking/useFetchAppointments";
+import { FIREBASE_APP, FIREBASE_AUTH } from "@config/firebaseConfig";
+import getIsUserAdmin from "./use/user/getIsUserAdmin";
+import Sidebar from "./components/Sidebar/Sidebar";
+import { Footer } from "./components/footer/Footer";
 
 export const links: Route.LinksFunction = () => [
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -46,57 +50,93 @@ export function Layout({ children }: { children: React.ReactNode }) {
     );
 }
 
+const fetchBookedAppointments = async () => {
+    const bookedAppointments = await fetchAppointments();
+    if (bookedAppointments) {
+        localStorage.setItem("bookedAppointments", JSON.stringify(bookedAppointments));
+    }
+};
+
 function AppContent() {
-    const { loading, setLoading } = useGlobalContext();
+
+    const { loading, setLoading, isAdmin, setIsAdmin } = useGlobalContext();
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
-
-        console.log('retreiving booked appointments')
-
-        const fetchBookedAppointments = async () => {
-            //setLoading(true)
-            const bookedAppointments = await fetchAppointments();
-            if (bookedAppointments) {
-                localStorage.setItem("bookedAppointments", JSON.stringify(bookedAppointments));
-            }
+        const unsubscribe = FIREBASE_AUTH.onAuthStateChanged(async () => {
+            //setLoading(true);
+            fetchBookedAppointments();
+            await getIsAuthenticated();
             //setLoading(false);
-        };
-        fetchBookedAppointments();
+        });
+
+        return () => unsubscribe();
     }, []);
+
+    useEffect(() => {
+        getIsAdmin();
+    }, [isAuthenticated]);
+
+    const getIsAdmin = async () => {
+        const isAdmin = await getIsUserAdmin();
+        if (isAdmin) {
+            setIsAdmin(true);
+            return
+        }
+        setIsAdmin(false);
+    }
+
+    const getIsAuthenticated = async () => {
+        const currentUserId = FIREBASE_AUTH.currentUser?.uid;
+        if (currentUserId) {
+            setIsAuthenticated(true);
+            return
+        }
+        setIsAuthenticated(false);
+    }
 
     return (
         <div className="relative w-screen h-screen overflow-hidden">
-          {/* Blur overlay */}
-          <motion.div
-            className="absolute top-0 left-0 w-full h-full z-10 pointer-events-none"
-            animate={{
-              backdropFilter: loading ? 'blur(10px)' : 'blur(0px)',
-              backgroundColor: loading
-                ? 'rgba(255,255,255,0.2)'
-                : 'rgba(255,255,255,0)',
-            }}
-            transition={{ duration: 0.5 }}
-            style={{
-              WebkitBackdropFilter: loading ? 'blur(10px)' : 'blur(0px)',
-            }}
-          />
-    
-          {/* Spinner */}
-          {loading && (
-            <div className="absolute top-0 left-0 w-full h-full z-20 flex justify-center items-center">
-              <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
+            {/* Blur overlay */}
+            <motion.div
+                    className="absolute top-0 left-0 w-full h-full z-10 pointer-events-none"
+                    animate={{
+                        backdropFilter: loading ? 'blur(10px)' : 'blur(0px)',
+                        backgroundColor: loading
+                            ? 'rgba(255,255,255,0.2)'
+                            : 'rgba(255,255,255,0)',
+                    }}
+                    transition={{ duration: 0.5 }}
+                    style={{
+                        WebkitBackdropFilter: loading ? 'blur(10px)' : 'blur(0px)',
+                    }}
+            />
+        
+            {/* Spinner */}
+            {loading && (
+                <div className="absolute top-0 left-0 w-full h-full z-20 flex justify-center items-center">
+                    <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
+                </div>
+            )}
+        
+            {/* Main App Layout */}
+            <div className={`relative z-0 w-full h-full flex ${isAdmin && isAuthenticated ? 'flex-row' : 'flex-col'}`}>
+                <div className={`${isAdmin && isAuthenticated ? 'w-[14%] h-full' : 'w-full h-20'}`}>
+                    {isAdmin && isAuthenticated ? (
+                        <Sidebar />
+                    ) : (
+                        <Header isAuthenticated={isAuthenticated} isAdmin={isAdmin} />
+                    )}
+                </div>
+
+                <main className={`${isAdmin && isAuthenticated ? 'w-[86%] h-full' : 'w-full h-full overflow-y-auto'}`}>
+                    <Outlet />
+                </main>
+
+                <footer>
+                    <Footer />
+                </footer>
             </div>
-          )}
-    
-          {/* Main App Layout */}
-          <div className="relative z-0 w-full h-full flex flex-col">
-            <div className="w-full h-12">
-              <Header />
-            </div>
-            <main className="flex-1 overflow-auto">
-              <Outlet />
-            </main>
-          </div>
         </div>
       );
       

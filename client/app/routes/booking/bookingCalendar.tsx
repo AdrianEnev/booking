@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import { useNavigate, useParams } from 'react-router';
-import getAvailableHours from '~/use/booking/useGetAvailableHours';
+import getAvailableHours from '@use/booking/useGetAvailableHours';
 import 'react-calendar/dist/Calendar.css';
 import { useGlobalContext } from '@config/GlobalContext';
-import { standardizeDate } from '~/use/credentials/useStandardizeDate';
+import { standardizeDate } from '@use/credentials/useStandardizeDate';
+import CustomCalendar from '~/components/booking/Calendar/CustomCalendar';
 
 type ValuePiece = Date | null;
 
@@ -29,6 +30,20 @@ const isWeekend = (date: Date) => {
     return day === 0 || day === 6; // Sunday (0) or Saturday (6)
 };
 
+const getMonthDays = (value: Date) => {
+    const month = value.getMonth();
+    const year = value.getFullYear();
+    const date = new Date(year, month, 1);
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const monthDays: number[] = [];
+
+    for (let day = 1; day <= daysInMonth; day++) {
+        monthDays.push(day);
+    }
+
+    return monthDays;
+}
+
 const bookingCalendar = () => {
 
     const navigate = useNavigate();
@@ -37,8 +52,11 @@ const bookingCalendar = () => {
     const [value, onChange] = useState<Value>(new Date());
     const [selectedDate, setSelectedDate] = useState<Date>(new Date());
     const [availableHours, setAvailableHours] = useState<string[]>([]);
+
+    // Used to check if a date has been selected so today's date isn't selected by default
+    const [initialDateSelected, setInitialDateSelected] = useState(false);
     
-    const {loading, setLoading} = useGlobalContext();
+    const {loading, setLoading, isAdmin} = useGlobalContext();
 
     const getBookedAppointmentsLocally = async () => {
         const bookedAppointments = localStorage.getItem('bookedAppointments');
@@ -106,6 +124,7 @@ const bookingCalendar = () => {
 
         if (loading) return;
         setLoading(true);
+        setInitialDateSelected(true);
     
         const isBooked = isDateFullyBooked(value);
     
@@ -122,58 +141,25 @@ const bookingCalendar = () => {
     };
 
     return (
-        <div className="w-full h-full px-[10%] pt-32 mb-16 font-manrope">
-            <div className="mb-8 ml-8">
-                <p className="text-4xl font-medium mb-3">Свободни часове - {standardizeDate(selectedDate)}</p>
-                <div className="w-full h-1 bg-gray-100 rounded-xl"></div>
-            </div>
+        <div className={`w-full h-full font-manrope ${isAdmin ? 'px-10 pt-6' : 'px-[9%] pt-10'}`}>
+            {/*
+                <div className={`${isAdmin ? 'mb-4' : 'mb-8 ml-8'}`}>
+                    <p className="text-4xl font-medium mb-3">
+                        Свободни часове{initialDateSelected && ` - ${standardizeDate(selectedDate)}`}
+                    </p>
+                    <div className="w-full h-1 bg-gray-100 rounded-xl"></div>
+                </div>
+            */}
 
-            <div className="w-full h-78 flex flex-row gap-x-8">
-                <Calendar
-                    onChange={onChange}
-                    value={value}
-                    locale={'bg-BG'}
-                    tileClassName={({ date, view }) => {
-                        if (view === 'month') {
-                            if (isDateFullyBooked(date)) {
-                                return 'booked-date';
-                            }
-                            if (isWeekend(date)) {
-                                return 'weekend-date'; // Custom class for weekends
-                            }
-                        }
-                        return undefined;
-                    }}
-                    onClickDay={(value, event) => {
-
-                        setSelectedDate(value);
-
-                        // check if date is fully booked
-
-
-                        handleDayClicked(value);
-                    }}
-                />
-
-                {availableHours && availableHours.length > 0 && (
-                    <div className="w-88 h-72 border border-gray-400 shadow-lg rounded-2xl p-3">
-                        <p className="text-2xl font-medium mb-6 text-center">Свободни часове</p>
-                        
-                        <ul className="list-disc pl-4 flex flex-col max-h-60 flex-wrap">
-                            {availableHours.map((hour, index) => (
-                                <li key={index} className="text-lg mb-2">
-                                    <button
-                                        className="text-blue-500 hover:underline"
-                                        onClick={() => handleNavigation(hour)}
-                                    >
-                                        {hour}
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                )}
-            </div>
+            <CustomCalendar 
+                onChange={onChange}
+                value={value}
+                onClickDay={(value, event) => {
+                    setSelectedDate(value);
+                    handleDayClicked(value);
+                }}
+                monthDays={getMonthDays(value as Date)}
+            />
         </div>
     );
 };

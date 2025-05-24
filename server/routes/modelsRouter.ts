@@ -2,9 +2,7 @@ import checkUsernameNSFW from '@services/models/checkUsernameNSFW';
 import express from 'express';
 const modelsRouter = express.Router();
 
-modelsRouter.get('/', async (req, res) => {
-    
-});
+modelsRouter.get('/', async (req, res) => {});
 
 modelsRouter.get('/checkUsernameNSFW/:username', async (req, res) => {
 

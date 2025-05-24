@@ -19,5 +19,7 @@ type Params = {
     "service": string;
   };
   "/login": {};
-  "/register": {};
+  "/account": {};
+  "/admin/dashboard": {};
+  "/admin/appointments": {};
 };

@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { standardizeDate } from "~/use/credentials/useStandardizeDate";
-import { standardizeService } from "~/use/credentials/useStandardizeService";
-import { validateCredentials } from "~/use/credentials/useValidateCredentials";
-import postAppointment from "~/use/booking/useBookAppointment";
-import sendEmail from "~/use/booking/useSendEmail";
+import { standardizeDate } from "@use/credentials/useStandardizeDate";
+import { standardizeService } from "@use/credentials/useStandardizeService";
+import { validateCredentials } from "@use/credentials/useValidateCredentials";
+import postAppointment from "~/use/booking/usePostAppointment";
+import { useGlobalContext } from "@config/GlobalContext";
 
 const bookAppointment = () => {
+
+    const {isAdmin, loading, setLoading} = useGlobalContext();
 
     const navigate = useNavigate();
 
@@ -18,8 +20,6 @@ const bookAppointment = () => {
     const [customerPhone, setCustomerPhone] = useState('');
     const [customerEmail, setCustomerEmail] = useState('');
     const [note, setNote] = useState('');
-
-    const [loading, setLoading] = useState(false);
 
     const book = async () => {
 
@@ -36,15 +36,6 @@ const bookAppointment = () => {
         }
 
         setLoading(true);
-
-        // Try to send an exail to the user, if it fails, show an error message (Ex: failed to book appointment: invalid email address)
-        const emailResponse = await sendEmail(customerEmail, customerName, date, hour, service);
-        if (!emailResponse) {
-            alert('Failed to book appointment: invalid email address');
-            setLoading(false);
-            return;
-        }
-
         await postAppointment(
             customerName,
             customerPhone,
@@ -54,9 +45,9 @@ const bookAppointment = () => {
             hour,
             note,
             setLoading,
-            navigate
+            navigate,
+            isAdmin
         )
-
         setLoading(false);
     }
 
@@ -78,6 +69,7 @@ const bookAppointment = () => {
                         placeholder="Име"
                         className="w-full h-12 rounded-lg border border-gray-300 p-2 mb-3"
                         onChange={(e) => setCustomerName(e.target.value)}
+                        maxLength={20}
                     />
 
                     <input 
@@ -85,6 +77,7 @@ const bookAppointment = () => {
                         placeholder="Телефон"
                         className="w-full h-12 rounded-lg border border-gray-300 p-2 mb-3"
                         onChange={(e) => setCustomerPhone(e.target.value)}
+                        maxLength={10}
                     />
                     
                     <input 
@@ -92,12 +85,13 @@ const bookAppointment = () => {
                         placeholder="Имейл"
                         className="w-full h-12 rounded-lg border border-gray-300 p-2 mb-3"
                         onChange={(e) => setCustomerEmail(e.target.value)}
+                        maxLength={35}
                     />
                     <textarea 
                         placeholder="Допълнителна информация"
                         className="w-full h-24 rounded-lg border border-gray-300 p-2 mb-3"
                         onChange={(e) => setNote(e.target.value)}
-                        maxLength={100}
+                        maxLength={50}
                     />
 
                     <button className="w-full h-12 rounded-lg bg-red-400 shadow-md hover:opacity-80"

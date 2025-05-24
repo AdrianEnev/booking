@@ -1,6 +1,6 @@
 import BookingBox from '@components/booking/BookingBox';
 import { useNavigate, useParams } from 'react-router';
-import { standardizeDate } from '~/use/credentials/useStandardizeDate';
+import { standardizeDate } from '@use/credentials/useStandardizeDate';
 
 const bookingServices = () => {
 
@@ -33,7 +33,7 @@ const bookingServices = () => {
                     navigate={navigate}
                     date={formattedDate}
                     hour={hour}
-                    service={'long-hair'}
+                    service={'long_hair'}
                 />
                 <p>long hair</p>
 
