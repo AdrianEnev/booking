@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router";
 import { standardizeDate } from "@use/credentials/useStandardizeDate";
 import { standardizeService } from "@use/credentials/useStandardizeService";
 import { validateCredentials } from "@use/credentials/useValidateCredentials";
-import postAppointment from "~/use/booking/usePostAppointment";
+import postAppointment from "~/use/booking/post/usePostAppointment";
 import { useGlobalContext } from "@config/GlobalContext";
 
 const bookAppointment = () => {

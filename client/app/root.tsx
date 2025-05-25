@@ -13,7 +13,7 @@ import "./app.css";
 import Header from "./components/header/Header";
 import { useEffect, useState } from "react";
 import { GlobalProvider, useGlobalContext } from "@config/GlobalContext";
-import fetchAppointments from "@use/booking/useFetchAppointments";
+import fetchAppointments from "~/use/booking/get/useFetchAppointments";
 import { FIREBASE_APP, FIREBASE_AUTH } from "@config/firebaseConfig";
 import getIsUserAdmin from "./use/user/getIsUserAdmin";
 import Sidebar from "./components/Sidebar/Sidebar";

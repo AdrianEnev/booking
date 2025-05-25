@@ -1,4 +1,4 @@
-import { faBook, faCalendar, faChartLine, faChevronDown, faCog, faDollar, faDumbbell, faEnvelope, faGear, faHome, faHouse, faMagnifyingGlass, faPerson, faPhone, faRunning, faScrewdriver, faShieldHalved, faUser, faUsers, faUtensils } from '@fortawesome/free-solid-svg-icons'
+import { faBook, faCog, faDollar, faDumbbell, faGear } from '@fortawesome/free-solid-svg-icons'
 import { FIREBASE_AUTH } from '@config/firebaseConfig'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'

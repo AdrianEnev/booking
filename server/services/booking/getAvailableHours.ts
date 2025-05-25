@@ -63,6 +63,7 @@ const getAvailableHours = async (date: string | Date, bookedHours: string[]) => 
 
     // Remove all bookedHours from availableHours, then return whatever is left
     const filteredAvailableHours = availableHours.filter((hour) => !bookedHours.includes(hour));
+    console.log(`Available hours for ${serverDateUTC.toISOString().split('T')[0]}:`, filteredAvailableHours);
     return filteredAvailableHours;
 };
 

@@ -13,7 +13,6 @@ const ImageCarousel = () => {
         <div className="w-1/2 h-full rounded-xl">  
             <Swiper
                 modules={[Navigation, Pagination, Scrollbar, A11y]}
-                spaceBetween={50}
                 slidesPerView={1}
                 navigation
                 loop={true}

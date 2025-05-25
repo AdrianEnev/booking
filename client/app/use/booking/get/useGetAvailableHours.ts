@@ -1,7 +1,7 @@
 // Gets available hours for a specific date
 const getAvailableHours = async (date: Date, bookedHours: string[]) => {
 
-    console.log('Retreiving available hours');
+    //console.log('Retreiving available hours');
 
     try {
         const response = await fetch(`http://localhost:3000/api/booking/available-hours`, {

@@ -1,12 +1,12 @@
-import React from 'react';
 import WeekDay from './WeekDay';
 import MonthDay from './MonthDay';
+import getMonthDays from '~/use/booking/get/getMonthDays';
 
 interface CustomCalendarProps {
-    onChange: (value: Date) => void;
-    value: any;
-    onClickDay: (value: Date, event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-    monthDays: Number[];
+    selectedDate: Date,
+    setSelectedDate: (date: Date) => void,
+    setInitialDateSelected: (isSelected: boolean) => void
+    navigate: any
 }
 
 /*
@@ -17,9 +17,12 @@ interface CustomCalendarProps {
 //hover:bg-gray-50 transition-colors duration-200 cursor-pointer
 //onClick={(event) => onClickDay(value, event)}
 
-function CustomCalendar({ onChange, value, onClickDay, monthDays }: CustomCalendarProps) {
+function CustomCalendar({ 
+    selectedDate, setSelectedDate, setInitialDateSelected, navigate
+}: CustomCalendarProps) {
 
     const weekDays = ['Пон', 'Вто', 'Сря', 'Чет', 'Пет', 'Съб', 'Нед'];
+    const monthDays = getMonthDays(selectedDate)
 
     const simplifyDate = (value: Date) => {
         // Returns month and year in the format "Май 2025"
@@ -37,7 +40,7 @@ function CustomCalendar({ onChange, value, onClickDay, monthDays }: CustomCalend
         ) {
             const newDate = new Date(date);
             newDate.setMonth(newDate.getMonth() + 1);
-            onChange(newDate);
+            setSelectedDate(newDate);
         }
     }
 
@@ -49,7 +52,7 @@ function CustomCalendar({ onChange, value, onClickDay, monthDays }: CustomCalend
         ) {
             const newDate = new Date(date);
             newDate.setMonth(newDate.getMonth() - 1);
-            onChange(newDate);
+            setSelectedDate(newDate);
         }
     }
 
@@ -57,29 +60,38 @@ function CustomCalendar({ onChange, value, onClickDay, monthDays }: CustomCalend
         <div
             className='w-full h-[93%] bg-white rounded-xl shadow-lg border border-gray-300 font-manrope'
         >
-
             {/* Header */}
             <div className='w-full h-[8%] bg-[#f8f8f8] rounded-x-xl rounded-t-xl border-b border-gray-300'>
-                <div className='flex w-full h-full items-center justify-between px-6'>
-
-                    <p className='text-2xl font-semibold text-gray-800 w-1/2'>
-                        {simplifyDate(value)}
-                    </p>
+                <div className='flex w-full h-full items-center justify-between pr-6'>
+                    <div className='flex flex-row items-center h-full w-[80%] gap-x-6'>
+                        <button className='w-16 h-full mt-[-4px] border-r border-gray-300
+                            hover:opacity-40 transition-colors duration-200 cursor-pointer
+                        '
+                            onClick={() => {
+                                navigate('/')
+                            }}
+                        >
+                            <p className='text-4xl text-[#4a6fa5]'>{'<'}</p>
+                        </button>
+                        <p className='text-2xl font-semibold text-[#403f3f] w-1/2'>
+                            {simplifyDate(selectedDate)}
+                        </p>
+                    </div>
 
                     <div className='flex flex-row gap-x-5 w-[10%] h-[50%]'>
                         <div className='flex flex-row items-center justify-between w-full h-full bg-white shadow-md rounded-lg border border-gray-300 text-black'>
                             <button className='w-1/4 h-full rounded-l-lg rounded-y-lg hover:bg-gray-200 active:opacity-40'
-                                onClick={() => decrementMonth(value)}
+                                onClick={() => decrementMonth(selectedDate)}
                             >
-                                <p className='text-gray-500'>{'<'}</p>
+                                <p className='text-[#4a6fa5]'>{'<'}</p>
                             </button>
 
                             <p className='text-md font-medium'>Месец</p>
 
                             <button className='w-1/4 h-full rounded-r-lg rounded-y-lg hover:bg-gray-200 active:opacity-40'
-                                onClick={() => incrementMonth(value)}
+                                onClick={() => incrementMonth(selectedDate)}
                             >
-                                <p className='text-gray-500'>{'>'}</p>
+                                <p className='text-[#4a6fa5]'>{'>'}</p>
                             </button>
                         </div> 
                     </div>
@@ -96,10 +108,17 @@ function CustomCalendar({ onChange, value, onClickDay, monthDays }: CustomCalend
             {/* Month Days */}
             <div className='w-full h-[86%] bg-white rounded-x-xl rounded-b-xl flex flex-row flex-wrap'>
                 {monthDays.map((day, index) => (
-                    <MonthDay key={index} index={index + 1} day={day} numberOfDays={monthDays.length} />
+                    <MonthDay 
+                        key={index} 
+                        index={index + 1} 
+                        day={day} // number from 1 to 31
+                        numberOfDays={monthDays.length}
+                        selectedDate={selectedDate}
+                        setSelectedDate={setSelectedDate}
+                        setInitialDateSelected={setInitialDateSelected}
+                    />
                 ))} 
             </div>
-            
         </div>
     );
 }

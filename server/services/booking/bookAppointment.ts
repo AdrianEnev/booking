@@ -7,10 +7,10 @@ import { v4 as uuidv4 } from 'uuid'; // For generating unique tokens
 // Can prevent 2 users from booking at the same date
 const checkHourTaken = async (date: string, hour: string) => {
 
-    console.log('checking if hour is taken:', date);
+    //console.log('checking if hour is taken:', date);
 
     const selectedDate = new Date(date);
-    console.log('converted date:', selectedDate);
+    //console.log('converted date:', selectedDate);
 
     const formattedDate = selectedDate.setHours(3, 0, 0, 0);
 
@@ -22,7 +22,7 @@ const checkHourTaken = async (date: string, hour: string) => {
             .where('hour', '==', hour)
             .get();
 
-        console.log('querySnapshot:', querySnapshot);
+        //console.log('querySnapshot:', querySnapshot);
 
         if (querySnapshot.empty) {
             console.log('No existing appointments found for the selected date');
