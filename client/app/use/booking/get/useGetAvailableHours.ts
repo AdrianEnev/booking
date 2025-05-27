@@ -2,6 +2,8 @@
 const getAvailableHours = async (date: Date, bookedHours: string[]) => {
 
     //console.log('Retreiving available hours');
+    const offsetDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+    const formattedDate = offsetDate.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
 
     try {
         const response = await fetch(`http://localhost:3000/api/booking/available-hours`, {
@@ -10,7 +12,7 @@ const getAvailableHours = async (date: Date, bookedHours: string[]) => {
                 'Content-Type': 'application/json', // Specifies the request body is JSON
             },
             body: JSON.stringify({
-                date: date,
+                date: formattedDate,
                 bookedHours: bookedHours,
             }),
         });

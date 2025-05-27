@@ -7,11 +7,9 @@ import { v4 as uuidv4 } from 'uuid'; // For generating unique tokens
 // Can prevent 2 users from booking at the same date
 const checkHourTaken = async (date: string, hour: string) => {
 
-    //console.log('checking if hour is taken:', date);
-
     const selectedDate = new Date(date);
-    //console.log('converted date:', selectedDate);
 
+    // Set 3 hours ahead, since firebase stores the dates in a different timezone
     const formattedDate = selectedDate.setHours(3, 0, 0, 0);
 
     try {
@@ -43,11 +41,13 @@ const bookAppointment = async (
     note: string, hour: string, appointmentVerified: boolean
 ) => {
 
+    // Date format: YYYY-MM-DD
+
     try {
         const existingAppointment = await FIRESTORE_ADMIN
             .collection('appointments')
             .where('customerEmail', '==', customerEmail)
-            .where('status', '==', 'confirmed') // Only check confirmed appointments
+            //.where('status', '==', 'confirmed') // Only check confirmed appointments
             .get();
 
         if (!existingAppointment.empty) {

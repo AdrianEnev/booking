@@ -17,7 +17,7 @@ function CustomCalendarCheckout({
     selectedDate, selectedHour, selectedService, setSelectedService,
     loading, setLoading, navigate, isAdmin
 }: CustomCalendarCheckoutProps) {
-
+    
     const [formData, setFormData] = useState({
         email: '',
         name: '',
@@ -38,8 +38,9 @@ function CustomCalendarCheckout({
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Converts date to YYYY-MM-DD format
-        const formattedDate = selectedDate.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
+        // Converts date to YYYY-MM-DD format (add 1 day to avoid timezone issues)
+        const offsetDate = new Date(selectedDate.getTime() - selectedDate.getTimezoneOffset() * 60000);
+        const formattedDate = offsetDate.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
        
         await bookAppointment(
             loading,
@@ -90,38 +91,42 @@ function CustomCalendarCheckout({
             <div className="max-w-2xl mx-auto p-6 h-[80%] flex items-center">
                 <form className="grid grid-cols-1 gap-4 w-full" onSubmit={handleSubmit}>
                     <input 
-                        type="email" 
+                        //type="email" 
                         name="email"
                         placeholder="Имейл" 
                         className="w-full p-3 border border-gray-300 shadow-sm rounded-xl" 
                         value={formData.email}
                         onChange={handleInputChange}
+                        maxLength={40}
                         required 
                     />
                     <input 
-                        type="text" 
+                        //type="text" 
                         name="name"
                         placeholder="Име" 
                         className="w-full p-3 border border-gray-300 shadow-sm rounded-xl" 
                         value={formData.name}
                         onChange={handleInputChange}
+                        maxLength={30}
                         required 
                     />
                     <input 
-                        type="tel" 
+                        //type="tel" 
                         name="phone"
                         placeholder="Телефонен номер" 
                         className="w-full p-3 border border-gray-300 shadow-sm rounded-xl" 
                         value={formData.phone}
                         onChange={handleInputChange}
+                        maxLength={10}
                         required 
                     />
                     <input 
-                        type="text" 
+                        // type="text" 
                         name="additionalInfo"
                         placeholder="Допълнителна информация" 
                         className="w-full p-3 border border-gray-300 shadow-sm rounded-xl" 
                         value={formData.additionalInfo}
+                        maxLength={50}
                         onChange={handleInputChange}
                     />
                     <button 

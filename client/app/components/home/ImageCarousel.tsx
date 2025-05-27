@@ -9,6 +9,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 const ImageCarousel = () => {
+
     return (
         <div className="w-1/2 h-full rounded-xl">  
             <Swiper
@@ -29,6 +30,22 @@ const ImageCarousel = () => {
                     <SwiperSlide>
                         <img 
                             src="../../../assets/design_studio_square.jpg" 
+                            alt="Slide 2" 
+                            className='w-auto h-auto rounded-xl'
+                        />
+                    </SwiperSlide>
+                    
+                    <SwiperSlide>
+                        <img 
+                            src='../../../assets/short_hair_burst_fade_design_cropped.jpg'
+                            alt="Slide 2" 
+                            className='w-auto h-auto rounded-xl'
+                        />
+                    </SwiperSlide>
+                    
+                    <SwiperSlide>
+                        <img 
+                            src='../../../assets/short_hair_burst_fade_cropped.jpg'
                             alt="Slide 2" 
                             className='w-auto h-auto rounded-xl'
                         />

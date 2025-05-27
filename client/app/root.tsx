@@ -18,6 +18,7 @@ import { FIREBASE_APP, FIREBASE_AUTH } from "@config/firebaseConfig";
 import getIsUserAdmin from "./use/user/getIsUserAdmin";
 import Sidebar from "./components/Sidebar/Sidebar";
 import { Footer } from "./components/footer/Footer";
+import getBookedDays from "./use/booking/get/getBookedDays";
 
 export const links: Route.LinksFunction = () => [
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -53,7 +54,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
 const fetchBookedAppointments = async () => {
     const bookedAppointments = await fetchAppointments();
     if (bookedAppointments) {
+        console.log(bookedAppointments)
         localStorage.setItem("bookedAppointments", JSON.stringify(bookedAppointments));
+
+        // Days with all 8 hours booked
+        const bookedDays = await getBookedDays(bookedAppointments);
+        console.log(bookedDays)
+        localStorage.setItem("bookedDays", JSON.stringify(bookedDays));
     }
 };
 
@@ -125,7 +132,7 @@ function AppContent() {
                     {isAdmin && isAuthenticated ? (
                         <Sidebar />
                     ) : (
-                        <Header isAuthenticated={isAuthenticated} isAdmin={isAdmin} />
+                        <Header isAdmin={isAdmin} />
                     )}
                 </div>
 
@@ -133,9 +140,7 @@ function AppContent() {
                     <Outlet />
                 </main>
 
-                <footer>
-                    <Footer />
-                </footer>
+                
             </div>
         </div>
       );

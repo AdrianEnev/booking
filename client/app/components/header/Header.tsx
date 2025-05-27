@@ -1,7 +1,7 @@
 //import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 
-const Header = ({isAuthenticated, isAdmin}: any) => {
+const Header = ({isAdmin}: any) => {
 
     const navigate = useNavigate();
 
@@ -57,7 +57,7 @@ const Header = ({isAuthenticated, isAdmin}: any) => {
                     <button 
                     className='w-24 h-10 p-2 rounded-full bg-[#4a6fa5] flex items-center justify-center hover:opacity-70'
                         onClick={() => {
-                            //navigate('/contact')
+                            navigate('/contact')
                         }}
                     >
                         <p className='text-base font-medium text-white'>Връзка</p>

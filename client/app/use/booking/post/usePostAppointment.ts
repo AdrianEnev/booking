@@ -1,4 +1,3 @@
-import { FIREBASE_AUTH } from "@config/firebaseConfig";
 import fetchAppointments from "../get/useFetchAppointments";
 
 const postAppointment = async (

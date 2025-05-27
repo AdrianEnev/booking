@@ -22,4 +22,5 @@ type Params = {
   "/account": {};
   "/admin/dashboard": {};
   "/admin/appointments": {};
+  "/contact": {};
 };

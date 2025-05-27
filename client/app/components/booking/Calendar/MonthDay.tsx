@@ -1,19 +1,19 @@
 function MonthDay({
-    index, day, numberOfDays, selectedDate, setSelectedDate, setInitialDateSelected
+    index, day, numberOfDays, selectedDate, setSelectedDate, setInitialDateSelected, bookedDays
 }: any) {
 
     return (
         <button 
             key={index} 
             className={`flex py-4 px-5
-                text-black font-medium ${numberOfDays >= 30 ? 'h-1/5' : 'h-1/4'} w-1/7 
+                text-black font-medium ${numberOfDays > 35 ? 'h-1/6' : 'h-1/5'} w-1/7 
                 border border-gray-100 
                 ${
                     index == 29 ? 'rounded-bl-xl' : 
                     index >= 1 && index <= 7 ? 'rounded-x-xl' : 
                     ''
                 }
-                hover:bg-gray-50 transition-colors duration-200 cursor-pointer
+                ${bookedDays.includes(day) ? 'bg-red-400 cursor-not-allowed' : 'hover:bg-gray-50 transition-colors duration-200 cursor-pointer'}
             `}
             onClick={() => {
                 setInitialDateSelected(true)

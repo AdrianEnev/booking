@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import 'react-calendar/dist/Calendar.css';
+import { useEffect, useState } from 'react';
 import { useGlobalContext } from '@config/GlobalContext';
 import CustomCalendar from '~/components/booking/Calendar/CustomCalendar';
 import handleCalendarDayClicked from '~/use/booking/handle/handleCalendarDayClicked';
@@ -8,6 +8,7 @@ import { getBookedAppointmentsLocally } from '~/use/booking/get/getBookedAppoint
 import CustomCalendarServices from '~/components/booking/Calendar/CustomCalendarServices';
 import { useNavigate } from 'react-router';
 import CustomCalendarCheckout from '~/components/booking/Calendar/CustomCalendarCheckout';
+import getBookedDaysLocally from '~/use/booking/get/getBookedDaysLocally';
 
 const bookingCalendar = () => {
 
@@ -22,10 +23,15 @@ const bookingCalendar = () => {
     const [selectedService, setSelectedService] = useState<string>('');
     const [availableHours, setAvailableHours] = useState<string[]>([]);
     const [bookedAppointments, setBookedAppointments] = useState<any[]>([]);
+    const [bookedDays, setBookedDays] = useState<string[]>([]);
+
     useEffect(() => {
         const fetch = async () => {
-            const appointments = await getBookedAppointmentsLocally();
-            setBookedAppointments(appointments);
+            const bookedAppointments = await getBookedAppointmentsLocally();
+            setBookedAppointments(bookedAppointments);
+
+            const bookedDays = await getBookedDaysLocally()
+            setBookedDays(bookedDays);
         };
 
         fetch();
@@ -55,6 +61,7 @@ const bookingCalendar = () => {
                     setSelectedDate={setSelectedDate}
                     setInitialDateSelected={setInitialDateSelected} // Prevents today's date from automatically being selected
                     navigate={navigate}
+                    bookedDays={bookedDays}
                 />
             ) : (initialDateSelected && !selectedHour) ? (
                 <CustomCalendarHours
