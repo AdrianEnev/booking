@@ -16,12 +16,12 @@ function contact() {
 
                         <div className='flex flex-row gap-x-3'>
                             <p className='font-bold text-xl text-red-500'>INSTA</p>
-                            <p className='font-medium text-lg'>viktor_cuts</p>
+                            <p className='font-medium text-lg'>adrian_cuts</p>
                         </div>
 
                         <div className='flex flex-row gap-x-3'>
                             <p className='font-bold text-xl text-green-500'>EMAIL</p>
-                            <p className='font-medium text-lg'>viktor@viktorcuts.com</p>
+                            <p className='font-medium text-lg'>adrian@adriancuts.com</p>
                         </div>
                     </div>
                 </div>

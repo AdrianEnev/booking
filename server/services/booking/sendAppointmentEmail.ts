@@ -42,7 +42,7 @@ const sendAppointmentEmail = async (
     // Send the email
     try {
         await transporter.sendMail({
-            from: 'victor@victorcuts.com', // Sender address
+            from: 'adrian@adriancuts.com', // Sender address
             to: customerEmail, // Recipient address
             subject: subject, // Subject line
             html: html, // HTML body

@@ -1,4 +1,3 @@
-import { useRef, useState } from "react";
 import type { Route } from "./+types/home";
 import ImageCarousel from "~/components/home/ImageCarousel";
 import { useNavigate } from 'react-router'
@@ -8,7 +7,7 @@ import Services from "~/components/home/Services";
 
 export function meta({}: Route.MetaArgs) {
     return [
-        { title: "Victor Cuts" }
+        { title: "Adrian Cuts" }
     ];
 }
 
@@ -29,7 +28,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                     <div className="flex flex-col">
                         <p className="font-medium text-[#2f2f2f] 
                             text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-                            Viktor Cuts
+                            Adrian
                         </p>
                         <p className="font-medium text-[#2f2f2f] 
                             text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
@@ -58,7 +57,19 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             <Services />
             <div className="w-full h-1 rounded-full bg-gray-100 mb-4 mt-16"></div>
             <Location />
-            <div className="w-full h-1 rounded-full bg-gray-100 mt-12"></div>
+            <div className="w-full h-1 rounded-full bg-gray-100 mt-4"></div>
+            <div className="my-4 flex justify-center">
+                <button className="w-60 h-16 rounded-lg bg-[#4a6fa5] shadow-lg border border-gray-100 hover:opacity-60"
+                    onClick={() => {
+                        navigate("/booking");
+                    }}
+                >
+                    <p className="text-lg text-white font-bold">Запиши час</p>
+                </button>
+            </div>
+            <div className="w-full h-1 rounded-full bg-gray-100 mt-4"></div>
+
+            
 
             <footer className="">
                 <Footer />

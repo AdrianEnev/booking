@@ -13,7 +13,7 @@ const Header = ({isAdmin}: any) => {
                 <div className='flex flex-row gap-x-3'> 
 
                     <button onClick={() => {
-                        window.open('https://www.instagram.com/viktor.cuts_/', '_blank');
+                        window.open('https://www.instagram.com/adrianenev/', '_blank');
                     }}>
                         <img src='../../../assets/viktor_cuts_logo.jpg' alt='logo' className='w-12 h-12 rounded-full'/>
                     </button>
@@ -21,7 +21,7 @@ const Header = ({isAdmin}: any) => {
                     <button onClick={() => {
                         navigate('/')
                     }}>
-                        <h1 className='text-2xl text-black font-bold'>Victor Cuts</h1>
+                        <h1 className='text-2xl text-black font-bold'>Adrian Cuts</h1>
                     </button>
 
                     
