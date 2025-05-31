@@ -34,7 +34,7 @@ const sendAppointmentEmail = async (
            <p>Дата: ${simiplifiedDate}</p>
            <p>Час: ${hour}</p>`
         : `<p>Моля, потвърдете вашия час, като кликнете на линка по-долу:</p>
-           <a href="http://localhost:3000/api/booking/verify?token=${verificationToken}">Потвърдете час</a>
+           <a href="${import.meta.env.VITE_BACKEND_URL}/booking/verify?token=${verificationToken}">Потвърдете час</a>
            <p>Услуга: ${simplifiedService}</p>
            <p>Дата: ${simiplifiedDate}</p>
            <p>Час: ${hour}</p>`;

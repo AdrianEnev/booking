@@ -1,3 +1,4 @@
+import 'module-alias/register';
 import express from "express";
 import bookingRouter from "@routes/bookingRouter";
 import cors from "cors";
@@ -6,7 +7,10 @@ import modelsRouter from "@routes/modelsRouter";
 import userRouter from "@routes/userRouter";
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:5173'], // allow frontend
+    credentials: true // if you're sending cookies or headers
+  }));
 app.use(express.json());
 dotenv.config();
 const PORT: number = Number.parseInt(process.env.PORT || "3000");

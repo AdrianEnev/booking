@@ -6,7 +6,7 @@ const getAvailableHours = async (date: Date, bookedHours: string[]) => {
     const formattedDate = offsetDate.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
 
     try {
-        const response = await fetch(`http://localhost:3000/api/booking/available-hours`, {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/booking/available-hours`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json', // Specifies the request body is JSON

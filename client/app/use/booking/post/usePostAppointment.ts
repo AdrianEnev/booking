@@ -20,7 +20,7 @@ const postAppointment = async (
     }
     
     try {
-        const response = await fetch(`http://localhost:3000/api/booking`, {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/booking`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json', // Specifies the request body is JSON

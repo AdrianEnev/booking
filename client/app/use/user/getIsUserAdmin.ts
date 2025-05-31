@@ -8,7 +8,7 @@ const getIsUserAdmin = async () => {
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/api/user/${userId}/admin`, {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/user/${userId}/admin`, {
             method: 'GET',
         });
         if (!response.ok) {

@@ -7,7 +7,7 @@ const setCurrentUserAdmin = async (isAdmin: boolean) => {
     const userId = FIREBASE_AUTH.currentUser?.uid;
 
     try {
-        const response = await fetch(`http://localhost:3000/api/user/${userId}/admin`, {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/user/${userId}/admin`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json', // Specifies the request body is JSON

@@ -5,7 +5,7 @@ const getUserInfo = async (user: any) => {
     const userId = user.uid;
 
     try {
-        const response = await fetch(`http://localhost:3000/api/user/${userId}`, {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/user/${userId}`, {
             method: 'GET',
         });
 
