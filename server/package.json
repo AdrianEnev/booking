@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon -r tsconfig-paths/register server.ts"
+    "dev": "nodemon -r tsconfig-paths/register server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +24,7 @@
     "typescript": "^5.8.3"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.7.10",
     "@types/cors": "^2.8.18",
     "@types/nodemailer": "^6.4.17",
     "tsconfig-paths": "^4.2.0"

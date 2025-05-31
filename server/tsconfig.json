@@ -3,25 +3,26 @@
       "target": "ES6",
       "module": "commonjs",
       "outDir": "./dist",
-      "rootDir": "./",
+      "rootDir": "./",  // Keep as-is since you're not using /src
       "strict": true,
       "esModuleInterop": true,
-      "allowJs": true, // Allow JavaScript files
-      "checkJs": false, // Disable type-checking for JavaScript files
-      "resolveJsonModule": true, // Allow json files
-      "baseUrl": ".",
-        "paths": {
-            "@custom_errors/*": ["errors/custom_errors/*"],
-            "@config/*": ["config/*"],
-            "@middleware/*": ["middleware/*"],
-            "@routes/*": ["routes/*"],
-            "@services/*": ["services/*"],
-            "@utils/*": ["utils/*"],
-        }
+      "allowJs": true,
+      "checkJs": false,
+      "resolveJsonModule": true,
+      "baseUrl": ".",  // baseUrl works fine at root
+      "paths": {
+        "@custom_errors/*": ["errors/custom_errors/*"],
+        "@config/*": ["config/*"],
+        "@middleware/*": ["middleware/*"],
+        "@routes/*": ["routes/*"],
+        "@services/*": ["services/*"],
+        "@utils/*": ["utils/*"]
+      }
     },
-    "include": ["**/*"], // Include all files in the project
-    "exclude": ["node_modules"],
+    "include": ["*.ts", "**/*.ts"],   // More targeted
+    "exclude": ["node_modules", "dist"],
     "ts-node": {
-        "files": true
+      "files": true
     }
-}
+  }
+  
