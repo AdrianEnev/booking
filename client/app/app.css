@@ -10,7 +10,7 @@
 
 html,
 body {
-    @apply bg-[#f8f8f8] dark:bg-gray-950 select-none;
+    @apply bg-[#f8f8f8] select-none;
 
     @media (prefers-color-scheme: dark) {
         color-scheme: dark;

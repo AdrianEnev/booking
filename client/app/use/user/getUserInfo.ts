@@ -1,7 +1,5 @@
 const getUserInfo = async (user: any) => {
 
-    // not implemented on backend
-    
     const userId = user.uid;
 
     try {

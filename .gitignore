@@ -12,8 +12,9 @@
 client/.env
 server/.envclient/.env
 server/.env
-client/.env
-server/.env
+client/!.env.example
+server/!.env.example
+
 node_modules/
 .DS_Store
 

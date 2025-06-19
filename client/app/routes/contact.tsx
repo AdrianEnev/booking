@@ -1,6 +1,6 @@
 function contact() {
     return (
-        <div className="w-full h-full px-[10%] pt-6 mb-16 font-manrope">
+        <div className="w-full h-full px-[10%] pt-6 mb-16 font-manrope text-black">
             <div className="w-full h-full flex flex-row gap-x-[10%] items-center justify-center">
                 <div className='w-full h-full flex flex-col max-w-[40%] justify-center mt-[-8%]'>
                     <div className='mb-8'>
@@ -16,12 +16,12 @@ function contact() {
 
                         <div className='flex flex-row gap-x-3'>
                             <p className='font-bold text-xl text-red-500'>INSTA</p>
-                            <p className='font-medium text-lg'>adrian_cuts</p>
+                            <p className='font-medium text-lg'>adrianenev</p>
                         </div>
 
                         <div className='flex flex-row gap-x-3'>
                             <p className='font-bold text-xl text-green-500'>EMAIL</p>
-                            <p className='font-medium text-lg'>adrian@adriancuts.com</p>
+                            <p className='font-medium text-lg'>enevbuis@gmail.com</p>
                         </div>
                     </div>
                 </div>
