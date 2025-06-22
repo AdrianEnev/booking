@@ -1,9 +1,11 @@
 import type { Route } from "./+types/home";
-import ImageCarousel from "~/components/home/ImageCarousel";
+import ImageCarousel from "@components/home/ImageCarousel";
 import { useNavigate } from 'react-router'
-import Location from "~/components/home/Location";
-import { Footer } from "~/components/footer/Footer";
-import Services from "~/components/home/Services";
+import Location from "@components/home/Location";
+import { Footer } from "@components/footer/Footer";
+import Services from "@components/home/Services";
+import { useEffect, useState } from "react";
+import getDimensions from "@use/getDimensions";
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -11,19 +13,39 @@ export function meta({}: Route.MetaArgs) {
     ];
 }
 
-export function loader({ context }: Route.LoaderArgs) {
+/*export function loader({ context }: Route.LoaderArgs) {
     return { message: context.VALUE_FROM_NETLIFY };
-}
+}*/
 
 export default function Home({ loaderData }: Route.ComponentProps) {
 
     const navigate = useNavigate();
+    const [dimensions, setDimensions] = useState({
+        width: 0,
+        height: 0
+    });
+    const fetchDimensions = async () => {
+        const result = await getDimensions();
+        setDimensions(result);
+    }
+
+    useEffect(() => {
+        const handleResize = () => {
+            fetchDimensions();
+        };
+
+        window.addEventListener("resize", handleResize);
+        fetchDimensions(); // Initial fetch on mount
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
     
     return (
-        <div className="w-full h-full px-[10%] pt-16 mb-16 font-manrope">
-
-            <div className="w-full h-full flex flex-row justify-between"> 
-                <div className="flex flex-col gap-y-5 w-full h-full justify-center mt-[-3%]">
+        <div className="w-full h-full px-[10%] md:pt-16 mb-16 font-manrope">
+            <div className="w-full h-full 2xl:h-[90%] 4xl:h-full flex flex-col md:flex-row md:justify-between"> 
+                <div className="flex flex-col gap-y-3 md:gap-y-5 w-full h-1/2 md:h-full justify-center md:mt-[-3%]">
 
                     <div className="flex flex-col">
                         <p className="font-medium text-[#2f2f2f] 
@@ -50,12 +72,12 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                 </div>
                 
                 {/* Images of haircuts */}
-                <ImageCarousel />
+                <ImageCarousel dimensions={dimensions}/>
             </div>
 
-            <div className="w-full h-1 rounded-full bg-gray-100 mb-4 mt-12"></div>
+            <div className="w-full h-1 rounded-full bg-gray-100 mb-4"></div>
             <Services />
-            <div className="w-full h-1 rounded-full bg-gray-100 mb-4 mt-16"></div>
+            <div className="w-full h-1 rounded-full bg-gray-100 mb-4"></div>
             <Location />
             <div className="w-full h-1 rounded-full bg-gray-100 mt-4"></div>
             <div className="my-4 flex justify-center">
@@ -69,9 +91,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             </div>
             <div className="w-full h-1 rounded-full bg-gray-100 mt-4"></div>
 
-            
-
-            <footer className="">
+            <footer>
                 <Footer />
             </footer>
         </div>

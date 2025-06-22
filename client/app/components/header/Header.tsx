@@ -6,25 +6,20 @@ const Header = ({isAdmin}: any) => {
     const navigate = useNavigate();
 
     return (
-        <div className='w-auto h-full px-[10%] pb-3 pt-5 flex items-center font-rubik'>
-            
+        <div className='w-auto h-full sm:px-[5%] md:px-[10%] pb-3 pt-5 flex items-center font-rubik'>
             <div className='flex w-full flex-row justify-between items-center mx-4'>
-
                 <div className='flex flex-row gap-x-3'> 
-
                     <button onClick={() => {
                         window.open('https://www.adrianenev.com', '_blank');
                     }}>
-                        <div className='w-12 h-12 bg-[#4a6fa5] rounded-full'/>
+                        <div className='w-12 h-12 bg-[#4a6fa5] rounded-full hover:opacity-60'/>
                     </button>
 
                     <button onClick={() => {
                         navigate('/')
                     }}>
-                        <h1 className='text-2xl text-black font-bold'>Adrian Cuts</h1>
+                        <h1 className='text-xl sm:text-2xl text-black font-bold hover:opacity-60'>Adrian Cuts</h1>
                     </button>
-
-                    
                 </div>
                 
                 <div className='flex flex-row gap-x-5'>

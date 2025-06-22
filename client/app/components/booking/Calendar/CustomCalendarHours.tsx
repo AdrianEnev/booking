@@ -27,7 +27,7 @@ function CustomCalendarHours({
                     <p className='text-4xl text-[#4a6fa5]'>{'<'}</p>
                 </button>
 
-                <p className='text-2xl font-semibold text-[#403f3f] w-1/2'>
+                <p className='text-lg md:text-2xl font-semibold text-[#403f3f] w-1/2'>
                     {standardizeDate(selectedDate)}
                 </p>
             </div>
@@ -38,6 +38,7 @@ function CustomCalendarHours({
                         key={index} 
                         index={index + 1} 
                         hour={hour}
+                        numberOfHours={availableHours.length}
                         setSelectedHour={setSelectedHour}
                     />
                 ))} 

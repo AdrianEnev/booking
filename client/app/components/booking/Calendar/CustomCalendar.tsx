@@ -61,7 +61,7 @@ function CustomCalendar({
         >
             {/* Header */}
             <div className='w-full h-[8%] bg-[#f8f8f8] rounded-x-xl rounded-t-xl border-b border-gray-300'>
-                <div className='flex w-full h-full items-center justify-between pr-6'>
+                <div className='flex w-full h-full items-center justify-between pr-3 md:pr-6'>
                     <div className='flex flex-row items-center h-full w-[80%] gap-x-6'>
                         <button className='w-16 h-full mt-[-4px] border-r border-gray-300
                             hover:opacity-40 transition-colors duration-200 cursor-pointer
@@ -72,12 +72,12 @@ function CustomCalendar({
                         >
                             <p className='text-4xl text-[#4a6fa5]'>{'<'}</p>
                         </button>
-                        <p className='text-2xl font-semibold text-[#403f3f] w-1/2'>
+                        <p className='text-lg md:text-2xl font-semibold text-[#403f3f] w-1/2'>
                             {simplifyDate(selectedDate)}
                         </p>
                     </div>
 
-                    <div className='flex flex-row gap-x-5 w-[10%] h-[50%]'>
+                    <div className='flex flex-row gap-x-5 w-[30%] sm:w-[20%] md:w-[15%] h-[65%] sm:h-[55%] md:h-[50%]'>
                         <div className='flex flex-row items-center justify-between w-full h-full bg-white shadow-md rounded-lg border border-gray-300 text-black'>
                             <button className='w-1/4 h-full rounded-l-lg rounded-y-lg hover:bg-gray-200 active:opacity-40'
                                 onClick={() => decrementMonth(selectedDate)}
@@ -85,7 +85,7 @@ function CustomCalendar({
                                 <p className='text-[#4a6fa5]'>{'<'}</p>
                             </button>
 
-                            <p className='text-md font-medium'>Месец</p>
+                            <p className='text-sm md:text-base font-medium'>Месец</p>
 
                             <button className='w-1/4 h-full rounded-r-lg rounded-y-lg hover:bg-gray-200 active:opacity-40'
                                 onClick={() => incrementMonth(selectedDate)}

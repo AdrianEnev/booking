@@ -73,22 +73,22 @@ function CustomCalendarCheckout({
                     <p className='text-4xl text-[#4a6fa5]'>{'<'}</p>
                 </button>
                 
-                <div className='flex flex-row w-1/2 h-full items-center gap-x-3'>
-                    <p className='text-2xl font-semibold text-[#403f3f] w-1/2 border-r border-gray-300'>
+                <div className='flex flex-row w-full md:w-1/2 h-full items-center gap-x-3'>
+                    <p className='text-lg md:text-2xl font-semibold text-[#403f3f] min-w-1/2 border-r border-gray-300'>
                         {standardizeDate(selectedDate)}
                     </p>
 
-                    <p className='text-2xl font-semibold text-[#403f3f] w-1/2 border-r border-gray-300'>
+                    <p className='text-lg md:text-2xl font-semibold text-[#403f3f] min-w-1/2'>
                         {selectedHour}
-                    </p>
-                    
-                    <p className='text-2xl font-semibold text-[#403f3f] w-1/2'>
-                        {selectedService}
                     </p>
                 </div>
             </div>
 
-            <div className="max-w-2xl mx-auto p-6 h-[80%] flex items-center">
+            <div className="max-w-2xl mx-auto px-6 pt-[10%] md:py-6 md:px-6 h-[80%] flex flex-col items-center md:justify-center">
+                <p className='text-xl md:text-2xl font-semibold text-[#403f3f] w-full mb-3 text-center'>
+                    {selectedService}
+                </p>
+
                 <form className="grid grid-cols-1 gap-4 w-full" onSubmit={handleSubmit}>
                     <input 
                         //type="email" 

@@ -8,6 +8,16 @@
     --font-manrope: "Manrope", ui-sans-serif, system-ui, sans-serif,
 }
 
+
+@theme {
+    --breakpoint-3xs: 25rem;
+    --breakpoint-2xs: 27.5rem;
+    --breakpoint-xs: 30rem;
+    --breakpoint-3xl: 112rem;
+    --breakpoint-4xl: 126rem;
+    --breakpoint-5xl: 140rem;
+}
+
 html,
 body {
     @apply bg-[#f8f8f8] select-none;

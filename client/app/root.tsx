@@ -54,12 +54,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
 const fetchBookedAppointments = async () => {
     const bookedAppointments = await fetchAppointments();
     if (bookedAppointments) {
-        console.log(bookedAppointments)
+        //console.log(bookedAppointments)
         localStorage.setItem("bookedAppointments", JSON.stringify(bookedAppointments));
 
         // Days with all 8 hours booked
         const bookedDays = await getBookedDays(bookedAppointments);
-        console.log(bookedDays)
+        //console.log(bookedDays)
         localStorage.setItem("bookedDays", JSON.stringify(bookedDays));
     }
 };

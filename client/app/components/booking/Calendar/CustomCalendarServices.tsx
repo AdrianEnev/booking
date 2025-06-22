@@ -6,10 +6,14 @@ interface CustomCalendarServicesProps {
     selectedHour: string;
     setSelectedHour: (hour: string) => void;
     setSelectedService: (service: string) => void;
+    dimensions?: {
+        width: number;
+        height: number;
+    };
 }
 
 function CustomCalendarServices({
-    selectedDate, selectedHour, setSelectedHour, setSelectedService
+    selectedDate, selectedHour, setSelectedHour, setSelectedService, dimensions
 }: CustomCalendarServicesProps) {
     return (
         <div
@@ -27,19 +31,19 @@ function CustomCalendarServices({
                     <p className='text-4xl text-[#4a6fa5]'>{'<'}</p>
                 </button>
                 
-                <div className='flex flex-row w-1/4 h-full items-center gap-x-3'>
-                    <p className='text-2xl font-semibold text-[#403f3f] w-1/2 border-r border-gray-300'>
+                <div className='flex flex-row w-full md:w-1/2 h-full items-center gap-x-3'>
+                    <p className='text-lg md:text-2xl font-semibold text-[#403f3f] min-w-1/2 border-r border-gray-300'>
                         {standardizeDate(selectedDate)}
                     </p>
 
-                    <p className='text-2xl font-semibold text-[#403f3f] w-1/2'>
+                    <p className='text-lg md:text-2xl font-semibold text-[#403f3f] min-w-1/2'>
                         {selectedHour}
                     </p>
                 </div>
             </div>
             
             <div className='w-full h-[92%] flex justify-center'>
-                <ServicesComponents setSelectedService={setSelectedService}/>
+                <ServicesComponents setSelectedService={setSelectedService} dimensions={dimensions}/>
             </div>
         </div>
     );

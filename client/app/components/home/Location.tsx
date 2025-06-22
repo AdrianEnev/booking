@@ -2,7 +2,7 @@ import React from 'react'
 
 function Location() {
     return (
-        <div className='w-full h-[700px]'>
+        <div className='w-full h-[350px] md:h-[700px]'>
             
             <p className="text-4xl text-gray-700 font-medium my-2">Местоположение</p>
 

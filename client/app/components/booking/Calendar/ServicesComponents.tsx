@@ -10,10 +10,14 @@ import 'swiper/css/scrollbar';
 
 interface ServicesComponentsProps {
     setSelectedService: (service: string) => void;
+    dimensions?: {
+        width: number;
+        height: number;
+    };
 }
 
 const ServicesComponents = ({
-    setSelectedService
+    setSelectedService, dimensions
 }: ServicesComponentsProps) => {
 
     const ServiceElement = ({ title, price, src }: { title: string; price: number; src: string }) => {
@@ -38,8 +42,8 @@ const ServicesComponents = ({
         <div className='w-[90%] h-full flex items-center'>
             <Swiper
                 modules={[Navigation, Scrollbar, A11y]}
-                slidesPerView={2}
-                slidesPerGroup={2}
+                slidesPerView={(dimensions?.width ?? 0) > 768 ? 2 : 1} // Adjust number of slides based on width
+                slidesPerGroup={(dimensions?.width ?? 0) > 768 ? 2 : 1}
                 navigation
                 loop={true}
                 pagination={{ clickable: false }}

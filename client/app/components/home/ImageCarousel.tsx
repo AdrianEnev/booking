@@ -8,10 +8,12 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-const ImageCarousel = () => {
-
+const ImageCarousel = ({dimensions}: any) => {
     return (
-        <div className="w-1/2 h-full rounded-xl">  
+        <div className={`w-full md:w-1/2 h-full rounded-xl 
+            ${(dimensions.height > (dimensions.width) * 0.8) && dimensions.width > 768 ? "mt-[20%]" : // Helps center the courosel when it starts to get pulled up from certain screen sizes
+            (dimensions.height > (dimensions.width) * 0.7) && dimensions.width > 768 ? "mt-[10%]" : ""}`}
+        >  
             <Swiper
                 modules={[Navigation, Pagination, Scrollbar, A11y]}
                 slidesPerView={1}

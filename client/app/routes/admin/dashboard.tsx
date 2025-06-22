@@ -1,6 +1,6 @@
 import { useGlobalContext } from '@config/GlobalContext';
 import React, { useEffect, useState } from 'react'
-import AppointmentsComponent from '~/components/admin/AppointmentsComponent';
+import AppointmentsComponent from '@components/admin/AppointmentsComponent';
 import fetchAppointments from '~/use/booking/get/useFetchAppointments';
 
 // Function to sort appointments by hour and date, newest ones show at the top

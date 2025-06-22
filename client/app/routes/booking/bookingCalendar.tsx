@@ -1,14 +1,15 @@
 import 'react-calendar/dist/Calendar.css';
 import { useEffect, useState } from 'react';
 import { useGlobalContext } from '@config/GlobalContext';
-import CustomCalendar from '~/components/booking/Calendar/CustomCalendar';
+import CustomCalendar from '@components/booking/Calendar/CustomCalendar';
 import handleCalendarDayClicked from '~/use/booking/handle/handleCalendarDayClicked';
-import CustomCalendarHours from '~/components/booking/Calendar/CustomCalendarHours';
+import CustomCalendarHours from '@components/booking/Calendar/CustomCalendarHours';
 import { getBookedAppointmentsLocally } from '~/use/booking/get/getBookedAppointmentsLocally';
-import CustomCalendarServices from '~/components/booking/Calendar/CustomCalendarServices';
+import CustomCalendarServices from '@components/booking/Calendar/CustomCalendarServices';
 import { useNavigate } from 'react-router';
-import CustomCalendarCheckout from '~/components/booking/Calendar/CustomCalendarCheckout';
+import CustomCalendarCheckout from '@components/booking/Calendar/CustomCalendarCheckout';
 import getBookedDaysLocally from '~/use/booking/get/getBookedDaysLocally';
+import getDimensions from '@use/getDimensions';
 
 const bookingCalendar = () => {
 
@@ -24,6 +25,27 @@ const bookingCalendar = () => {
     const [availableHours, setAvailableHours] = useState<string[]>([]);
     const [bookedAppointments, setBookedAppointments] = useState<any[]>([]);
     const [bookedDays, setBookedDays] = useState<string[]>([]);
+    const [dimensions, setDimensions] = useState({
+        width: 0,
+        height: 0
+    });
+    const fetchDimensions = async () => {
+        const result = await getDimensions();
+        setDimensions(result);
+    }
+
+    useEffect(() => {
+        const handleResize = () => {
+            fetchDimensions();
+        };
+
+        window.addEventListener("resize", handleResize);
+        fetchDimensions(); // Initial fetch on mount
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
 
     useEffect(() => {
         const fetch = async () => {
@@ -49,10 +71,6 @@ const bookingCalendar = () => {
         )
     }, [selectedDate])
 
-    /*useEffect(() => {
-        // Checkout reached
-    }, [selectedService])*/
-
     return (
         <div className={`w-full h-full font-manrope ${isAdmin ? 'px-10 pt-6' : 'px-[9%] pt-10'}`}>
             {!initialDateSelected ? (
@@ -76,6 +94,7 @@ const bookingCalendar = () => {
                     selectedHour={selectedHour}
                     setSelectedHour={setSelectedHour}
                     setSelectedService={setSelectedService}
+                    dimensions={dimensions}
                 />
             ) : (
                 <CustomCalendarCheckout 
