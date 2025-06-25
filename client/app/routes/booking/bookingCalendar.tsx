@@ -72,7 +72,7 @@ const bookingCalendar = () => {
     }, [selectedDate])
 
     return (
-        <div className={`w-full h-full font-manrope ${isAdmin ? 'px-10 pt-6' : 'px-[9%] pt-10'}`}>
+        <div className={`w-full h-full font-manrope ${isAdmin ? 'px-10 pt-6' : 'px-[4%] md:px-[9%] pt-10'}`}>
             {!initialDateSelected ? (
                 <CustomCalendar 
                     selectedDate={selectedDate}

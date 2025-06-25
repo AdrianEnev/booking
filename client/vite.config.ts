@@ -5,13 +5,6 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import path from 'path';
 
 export default defineConfig(({ isSsrBuild }) => ({
-    /*build: {
-        rollupOptions: isSsrBuild
-        ? {
-            input: "./server/app.ts",
-            }
-        : undefined,
-    },*/
     alias: {
         '@components': path.resolve(__dirname, './app/components'),
         '@routes': path.resolve(__dirname, './app/routes'),

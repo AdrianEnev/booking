@@ -57,12 +57,12 @@ function CustomCalendar({
 
     return (
         <div
-            className='w-full h-[95%] bg-white rounded-xl shadow-lg border border-gray-300 font-manrope'
+            className='w-full h-[55%] md:h-[95%] bg-white rounded-xl shadow-lg border border-gray-300 font-manrope'
         >
             {/* Header */}
-            <div className='w-full h-[8%] bg-[#f8f8f8] rounded-x-xl rounded-t-xl border-b border-gray-300'>
+            <div className='w-full h-[16%] md:h-[8%] bg-[#f8f8f8] rounded-x-xl rounded-t-xl border-b border-gray-300'>
                 <div className='flex w-full h-full items-center justify-between pr-3 md:pr-6'>
-                    <div className='flex flex-row items-center h-full w-[80%] gap-x-6'>
+                    <div className='flex flex-row items-center h-full w-[80%] gap-x-2 sm:gap-x-4 md:gap-x-6'>
                         <button className='w-16 h-full mt-[-4px] border-r border-gray-300
                             hover:opacity-40 transition-colors duration-200 cursor-pointer
                         '
@@ -72,7 +72,7 @@ function CustomCalendar({
                         >
                             <p className='text-4xl text-[#4a6fa5]'>{'<'}</p>
                         </button>
-                        <p className='text-lg md:text-2xl font-semibold text-[#403f3f] w-1/2'>
+                        <p className='text-sm 3xs:text-base md:text-lg lg:text-2xl font-semibold text-[#403f3f] w-1/2'>
                             {simplifyDate(selectedDate)}
                         </p>
                     </div>
@@ -98,7 +98,7 @@ function CustomCalendar({
             </div>
 
             {/* Week Days */}
-            <div className='w-full h-[6%] bg-white rounded-x-xl border-b border-gray-300 flex flex-row justify-between'>
+            <div className='w-full h-[12%] md:h-[6%] bg-white rounded-x-xl border-b border-gray-300 flex flex-row justify-between'>
                 {weekDays.map((day, index) => (
                     <WeekDay key={index} index={index + 1} day={day} />
                 ))} 

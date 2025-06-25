@@ -74,11 +74,11 @@ function CustomCalendarCheckout({
                 </button>
                 
                 <div className='flex flex-row w-full md:w-1/2 h-full items-center gap-x-3'>
-                    <p className='text-lg md:text-2xl font-semibold text-[#403f3f] min-w-1/2 border-r border-gray-300'>
+                    <p className='text-sm 3xs:text-base md:text-2xl font-semibold text-[#403f3f] min-w-1/2 border-r border-gray-300'>
                         {standardizeDate(selectedDate)}
                     </p>
 
-                    <p className='text-lg md:text-2xl font-semibold text-[#403f3f] min-w-1/2'>
+                    <p className='text-sm 3xs:text-base md:text-2xl font-semibold text-[#403f3f] min-w-1/2'>
                         {selectedHour}
                     </p>
                 </div>
@@ -94,7 +94,7 @@ function CustomCalendarCheckout({
                         //type="email" 
                         name="email"
                         placeholder="Имейл" 
-                        className="w-full p-3 border border-gray-300 shadow-sm rounded-xl" 
+                        className="w-full p-3 border border-gray-300 shadow-sm rounded-xl text-black" 
                         value={formData.email}
                         onChange={handleInputChange}
                         maxLength={40}
@@ -104,7 +104,7 @@ function CustomCalendarCheckout({
                         //type="text" 
                         name="name"
                         placeholder="Име" 
-                        className="w-full p-3 border border-gray-300 shadow-sm rounded-xl" 
+                        className="w-full p-3 border border-gray-300 shadow-sm rounded-xl text-black" 
                         value={formData.name}
                         onChange={handleInputChange}
                         maxLength={30}
@@ -114,7 +114,7 @@ function CustomCalendarCheckout({
                         //type="tel" 
                         name="phone"
                         placeholder="Телефонен номер" 
-                        className="w-full p-3 border border-gray-300 shadow-sm rounded-xl" 
+                        className="w-full p-3 border border-gray-300 shadow-sm rounded-xl text-black" 
                         value={formData.phone}
                         onChange={handleInputChange}
                         maxLength={10}
@@ -124,7 +124,7 @@ function CustomCalendarCheckout({
                         // type="text" 
                         name="additionalInfo"
                         placeholder="Допълнителна информация" 
-                        className="w-full p-3 border border-gray-300 shadow-sm rounded-xl" 
+                        className="w-full p-3 border border-gray-300 shadow-sm rounded-xl text-black" 
                         value={formData.additionalInfo}
                         maxLength={50}
                         onChange={handleInputChange}

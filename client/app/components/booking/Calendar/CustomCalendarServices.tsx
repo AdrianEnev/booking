@@ -17,7 +17,7 @@ function CustomCalendarServices({
 }: CustomCalendarServicesProps) {
     return (
         <div
-            className='w-full h-[93%] bg-white rounded-xl shadow-lg border border-gray-300 font-manrope'
+            className='w-full h-[95%] bg-white rounded-xl shadow-lg border border-gray-300 font-manrope'
         >
             {/* Header */}
             <div className='w-full h-[8%] bg-[#f8f8f8] rounded-x-xl rounded-t-xl border-b border-gray-300 flex flex-row items-center gap-x-6'>
@@ -32,11 +32,11 @@ function CustomCalendarServices({
                 </button>
                 
                 <div className='flex flex-row w-full md:w-1/2 h-full items-center gap-x-3'>
-                    <p className='text-lg md:text-2xl font-semibold text-[#403f3f] min-w-1/2 border-r border-gray-300'>
+                    <p className='text-sm 3xs:text-base md:text-2xl font-semibold text-[#403f3f] min-w-1/2 border-r border-gray-300'>
                         {standardizeDate(selectedDate)}
                     </p>
 
-                    <p className='text-lg md:text-2xl font-semibold text-[#403f3f] min-w-1/2'>
+                    <p className='text-sm 3xs:text-base md:text-2xl font-semibold text-[#403f3f] min-w-1/2'>
                         {selectedHour}
                     </p>
                 </div>

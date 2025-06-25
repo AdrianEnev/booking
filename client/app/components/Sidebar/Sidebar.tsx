@@ -38,7 +38,7 @@ const Sidebar = () => {
                     }}
                         className='flex justify-center w-full'
                     >
-                        <img src='../../../assets/viktor_cuts_logo.jpg' alt='logo' className='w-24 h-24 rounded-full'/>
+                        <img src='/images/viktor_cuts_logo.jpg' alt='logo' className='w-24 h-24 rounded-full'/>
                     </button>
                     
                 </div>

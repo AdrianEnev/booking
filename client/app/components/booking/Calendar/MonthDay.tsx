@@ -4,7 +4,7 @@ function MonthDay({
     return (
         <button 
             key={index} 
-            className={`flex py-4 px-5 text-sm sm:text-base
+            className={`flex py-2 px-3 text-sm md:text-base
                 text-black font-medium ${numberOfDays > 35 ? 'h-1/6' : 'h-1/5'} w-1/7 
                 border border-gray-100 
                 ${

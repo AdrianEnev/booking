@@ -51,19 +51,19 @@ const ServicesComponents = ({
             >
 
                 <SwiperSlide>
-                    <ServiceElement title='Къса прическа' price={10} src='../../../assets/short_hair_square.jpg'/>
+                    <ServiceElement title='Къса прическа' price={10} src='/images/short_hair_square.jpg'/>
                 </SwiperSlide>
                 
                 <SwiperSlide>
-                    <ServiceElement title='Дълга прическа' price={15} src='../../../assets/design_studio_square.jpg'/>
+                    <ServiceElement title='Дълга прическа' price={15} src='/images/design_studio_square.jpg'/>
                 </SwiperSlide> 
                 
                 <SwiperSlide>
-                    <ServiceElement title='Услуга 1' price={5} src='../../../assets/short_hair_burst_fade_cropped.jpg'/>
+                    <ServiceElement title='Услуга 1' price={5} src='/images/short_hair_burst_fade_cropped.jpg'/>
                 </SwiperSlide>
                 
                 <SwiperSlide>
-                    <ServiceElement title='Услуга 2' price={12.50} src='../../../assets/short_hair_burst_fade_design_cropped.jpg'/>
+                    <ServiceElement title='Услуга 2' price={12.50} src='/images/short_hair_burst_fade_design_cropped.jpg'/>
                 </SwiperSlide>
             </Swiper>
         </div>

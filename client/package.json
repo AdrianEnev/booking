@@ -3,16 +3,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "react-router build && node netlify/prepare.js",
+    "build": "tsc -b && vite build && react-router build",
     "dev": "vite",
-    "start": "netlify serve",
-    "typecheck": "react-router typegen && tsc"
+    "typecheck": "react-router typegen && tsc",
+    "deploy": "npm run build && netlify deploy --dir=build",
+    "deploy:prod": "npm run build && netlify deploy --prod --dir=build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "@netlify/functions": "3.1.2",
     "@react-router/node": "^7.5.3",
     "cesium": "^1.129.0",
     "dotenv": "^16.5.0",
@@ -38,7 +38,6 @@
     "@types/react-dom": "^19.1.2",
     "cross-env": "^7.0.3",
     "express": "^5.1.0",
-    "netlify-cli": "^20.1.1",
     "tailwindcss": "^4.1.4",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",

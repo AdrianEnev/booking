@@ -23,7 +23,7 @@ const ImageCarousel = ({dimensions}: any) => {
             >
                     <SwiperSlide>
                         <img 
-                            src="../../../assets/short_hair_square.jpg" 
+                            src="/images/short_hair_square.jpg" 
                             alt="Slide 1" 
                             className='w-auto h-auto rounded-xl'
                         />
@@ -31,7 +31,7 @@ const ImageCarousel = ({dimensions}: any) => {
 
                     <SwiperSlide>
                         <img 
-                            src="../../../assets/design_studio_square.jpg" 
+                            src="/images/design_studio_square.jpg" 
                             alt="Slide 2" 
                             className='w-auto h-auto rounded-xl'
                         />
@@ -39,7 +39,7 @@ const ImageCarousel = ({dimensions}: any) => {
                     
                     <SwiperSlide>
                         <img 
-                            src='../../../assets/short_hair_burst_fade_design_cropped.jpg'
+                            src='/images/short_hair_burst_fade_design_cropped.jpg'
                             alt="Slide 2" 
                             className='w-auto h-auto rounded-xl'
                         />
@@ -47,7 +47,7 @@ const ImageCarousel = ({dimensions}: any) => {
                     
                     <SwiperSlide>
                         <img 
-                            src='../../../assets/short_hair_burst_fade_cropped.jpg'
+                            src='/images/short_hair_burst_fade_cropped.jpg'
                             alt="Slide 2" 
                             className='w-auto h-auto rounded-xl'
                         />

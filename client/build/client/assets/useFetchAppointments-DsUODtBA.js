@@ -1,0 +1,1 @@
+const n=async()=>{try{const t=await fetch("https://booking-app.fly.dev/api/booking",{method:"GET",headers:{"Content-Type":"application/json"}});return t.ok?await t.json():(console.error("Response ERROR retreiving appointments:",t),null)}catch(t){return console.error("ERROR retreiving appointments:",t),null}};export{n as f};

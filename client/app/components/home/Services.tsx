@@ -8,7 +8,7 @@ function Services() {
             <div className='w-full h-full flex flex-col gap-y-3 md:gap-y-0 md:flex-row md:justify-between pb-8 pt-4'>
                 <div className='md:w-[32%] h-[100%] bg-white border border-[#4a6fa5] shadow-md rounded-lg flex flex-col gap-y-2'>
                     <img 
-                        src='../../../assets/beard.jpeg'
+                        src='/images/beard.jpeg'
                         alt="Slide 2" 
                         className='w-full h-full rounded-md'
                     />
@@ -16,7 +16,7 @@ function Services() {
                 </div>
                 <div className='md:w-[32%] h-[100%] bg-white border border-[#4a6fa5] shadow-md rounded-lg flex flex-col gap-y-2'>
                     <img 
-                        src='../../../assets/short_hair_square.jpg'
+                        src='/images/short_hair_square.jpg'
                         alt="Slide 2" 
                         className='w-full h-full rounded-md'
                     />
@@ -24,7 +24,7 @@ function Services() {
                 </div>
                 <div className='md:w-[32%] h-[100%] bg-white border border-[#4a6fa5] shadow-md rounded-lg flex flex-col gap-y-2'>
                     <img 
-                        src='../../../assets/design_studio_square.jpg'
+                        src='/images/design_studio_square.jpg'
                         alt="Slide 2" 
                         className='w-full h-full rounded-md'
                     />

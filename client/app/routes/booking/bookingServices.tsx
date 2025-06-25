@@ -11,7 +11,6 @@ const bookingServices = () => {
 
     return (
         <div className="w-full h-full px-[10%] pt-32 mb-16 font-manrope">
-            
             <div className='mb-8 ml-8'>
                 <p className='text-4xl font-medium mb-3'>Услуги</p>
                 <p className='text-xl text-gray-500 mb-3'>{standardizedDate} - {hour}ч.</p>
@@ -20,7 +19,7 @@ const bookingServices = () => {
             
             <div className='flex flex-row flex-wrap gap-x-3 gap-y-3 justify-center'>
                 <BookingBox 
-                    imgPath='../../../assets/short_hair_square.jpg'
+                    imgPath='/images/short_hair_square.jpg'
                     navigate={navigate}
                     date={formattedDate}
                     hour={hour}
@@ -29,16 +28,14 @@ const bookingServices = () => {
                 <p>short hair</p>
 
                 <BookingBox 
-                    imgPath='../../../assets/design_studio_square.jpg'
+                    imgPath='/images/design_studio_square.jpg'
                     navigate={navigate}
                     date={formattedDate}
                     hour={hour}
                     service={'long_hair'}
                 />
                 <p>long hair</p>
-
             </div>
-
         </div>
     )
 }
