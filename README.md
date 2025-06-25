@@ -2,6 +2,9 @@
 - ⚛️ **React + React Router v7** for the frontend (using Vite)
 - 🧩 **Node.js + Express** for the backend
 
+## Deployed using netlify + fly.ioAdd commentMore actions
+- [Access Here](https://booking.lunge.run/)
+
 ## 🚀 Features
 
 - 💡 Clean landing page with location, examples, ...
