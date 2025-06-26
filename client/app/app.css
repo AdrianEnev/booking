@@ -22,10 +22,6 @@ html,
 body {
     @apply bg-[#f8f8f8] select-none;
 
-    @media (prefers-color-scheme: dark) {
-        color-scheme: dark;
-    }
-
     .swiper-button-next,
     .swiper-button-prev {
         @apply p-3 text-white rounded-full;  /* Default color */

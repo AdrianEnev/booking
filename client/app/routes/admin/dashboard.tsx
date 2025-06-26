@@ -2,6 +2,7 @@ import { useGlobalContext } from '@config/GlobalContext';
 import React, { useEffect, useState } from 'react'
 import AppointmentsComponent from '@components/admin/AppointmentsComponent';
 import fetchAppointments from '~/use/booking/get/useFetchAppointments';
+import { useNavigate } from 'react-router';
 
 // Function to sort appointments by hour and date, newest ones show at the top
 function sortAppointments(appointments: any[]) {
@@ -36,9 +37,15 @@ function sortAppointments(appointments: any[]) {
 export default function dashboard() {
 
     // retreivingAppointments is used to distinguish between loading and empty state
-    const {setLoading, retrievingAppointments, setRetrievingAppointments} = useGlobalContext();
+    const {setLoading, retrievingAppointments, setRetrievingAppointments, isAdmin} = useGlobalContext();
+    const navigate = useNavigate();
     const [appointments, setAppointments] = useState<any[]>([])
     useEffect(() => {
+        if (!isAdmin) {
+            navigate('/'); // Redirect non-admin users to the home page
+            return;
+        }
+        
         getAppointments();
     }, [])
 
