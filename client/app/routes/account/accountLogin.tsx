@@ -14,7 +14,7 @@ const Account = () => {
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
 
-    const {loading, setLoading, setIsAdmin} = useGlobalContext();
+    const {loading, setLoading} = useGlobalContext();
 
     const handleFirebaseLogin = (email: string, password: string) => {
 
@@ -77,7 +77,7 @@ const Account = () => {
                         <input
                             type="text"
                             onChange={(event: React.ChangeEvent<HTMLInputElement>) => setEmail(event.target.value)}
-                            placeholder={'гошомир@gmail.com'}
+                            placeholder={'примеренимейл@gmail.com'}
                             className='border border-gray-300 p-2 rounded-md'
                         />
                         
@@ -89,7 +89,7 @@ const Account = () => {
                             className='border border-gray-300 p-2 rounded-md'
                         />
 
-                        <button className='w-full h-12 bg-red-400 mt-3 rounded-xl active:opacity-60'
+                        <button className='w-full h-12 bg-[#4a6fa5] mt-3 rounded-xl active:opacity-60'
                             onClick={handleLogin}
                         >
                             <p className='text-xl font-medium text-white'>Вход</p>

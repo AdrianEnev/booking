@@ -18,9 +18,14 @@ export default function account() {
     const [oldUsername, setOldUsername] = useState('');
     const [username, setUsername] = useState('...');
 
-    const {loading, setLoading, setIsAdmin} = useGlobalContext();
+    const { loading, setLoading, setIsAdmin, isAdmin } = useGlobalContext();
 
     useEffect(() => {
+        if (!isAdmin) {
+            navigate('/'); // Redirect non-admin users to the home page
+            return;
+        }
+
         const unsubscribe = FIREBASE_AUTH.onAuthStateChanged((user) => {
             if (user) {
                 setEmail(user.email || '...');
@@ -34,7 +39,7 @@ export default function account() {
         });
     
         return () => unsubscribe(); // Cleanup the listener on unmount
-    }, []);
+    }, [isAdmin, navigate]);
 
     const resetGlobalContext = async () => {
         setLoading(false);
