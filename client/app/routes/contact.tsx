@@ -1,6 +1,12 @@
+import { motion } from "framer-motion"
+
 function contact() {
     return (
-        <div className="w-full h-full px-[10%] pt-6 mb-16 font-manrope text-black">
+        <motion.div className="w-full h-full px-[10%] pt-6 mb-16 font-manrope text-black"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+        >
             <div className="w-full h-full flex flex-col md:flex-row md:gap-x-[10%] 4xl:gap-x-[0%] items-center justify-center">
                 <div className='w-full h-[35%] md:h-full flex flex-col md:max-w-[40%] md:justify-center md:mt-[-8%]'>
                     <div className='mb-2 md:mb-8'>
@@ -44,7 +50,7 @@ function contact() {
                     </form>
                 </div>
             </div>
-        </div>  
+        </motion.div>  
     )
 }
 

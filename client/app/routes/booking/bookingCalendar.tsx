@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router';
 import CustomCalendarCheckout from '@components/booking/Calendar/CustomCalendarCheckout';
 import getBookedDaysLocally from '~/use/booking/get/getBookedDaysLocally';
 import getDimensions from '@use/getDimensions';
+import { motion } from 'framer-motion';
 
 const bookingCalendar = () => {
 
@@ -18,6 +19,10 @@ const bookingCalendar = () => {
     
     // prevents today's date from automatically being selected
     const [initialDateSelected, setInitialDateSelected] = useState(false);
+
+    const [customCalendarHoursAnimationRan, setCustomCalendarHoursAnimationRan] = useState(false);
+    const [customCalendarServicesAnimationRan, setCustomCalendarServicesAnimationRan] = useState(false);
+    const [customCalendarCheckoutAnimationRan, setCustomCalendarCheckoutAnimationRan] = useState(false);
     
     const [selectedDate, setSelectedDate] = useState<Date>(new Date());
     const [selectedHour, setSelectedHour] = useState<string>('');
@@ -72,7 +77,11 @@ const bookingCalendar = () => {
     }, [selectedDate])
 
     return (
-        <div className={`w-full h-full font-manrope ${isAdmin ? 'px-10 pt-6' : 'px-[4%] md:px-[9%] pt-10'}`}>
+        <motion.div className={`w-full h-full font-manrope ${isAdmin ? 'px-10 pt-6' : 'px-[4%] md:px-[9%] pt-10'}`}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+        >
             {!initialDateSelected ? (
                 <CustomCalendar 
                     selectedDate={selectedDate}
@@ -87,6 +96,8 @@ const bookingCalendar = () => {
                     setInitialDateSelected={setInitialDateSelected} // Used to navigate back to calendar
                     availableHours={availableHours}
                     setSelectedHour={setSelectedHour}
+                    customCalendarHoursAnimationRan={customCalendarHoursAnimationRan}
+                    setCustomCalendarHoursAnimationRan={setCustomCalendarHoursAnimationRan}
                 />
             ) : !selectedService ? (
                 <CustomCalendarServices
@@ -95,6 +106,8 @@ const bookingCalendar = () => {
                     setSelectedHour={setSelectedHour}
                     setSelectedService={setSelectedService}
                     dimensions={dimensions}
+                    customCalendarServicesAnimationRan={customCalendarServicesAnimationRan}
+                    setCustomCalendarServicesAnimationRan={setCustomCalendarServicesAnimationRan}
                 />
             ) : (
                 <CustomCalendarCheckout 
@@ -106,9 +119,11 @@ const bookingCalendar = () => {
                     setLoading={setLoading}
                     navigate={navigate}
                     isAdmin={isAdmin}
+                    customCalendarCheckoutAnimationRan={customCalendarCheckoutAnimationRan}
+                    setCustomCalendarCheckoutAnimationRan={setCustomCalendarCheckoutAnimationRan}
                 />
             )}
-        </div>
+        </motion.div>
     );
 };
 

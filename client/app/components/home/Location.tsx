@@ -1,8 +1,13 @@
-import React from 'react'
+import { motion } from 'framer-motion'
 
-function Location() {
+function Location({locationRef, locationVisible}: any) {
     return (
-        <div className='w-full h-[350px] md:h-[700px]'>
+        <motion.div className='w-full h-[350px] md:h-[700px]'
+            ref={locationRef}
+            initial={{ opacity: 0, y: 30 }}
+            animate={locationVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+        >
             
             <p className="text-4xl text-gray-700 font-medium my-2">Местоположение</p>
 
@@ -19,7 +24,7 @@ function Location() {
                     />
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
 

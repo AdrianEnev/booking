@@ -18,7 +18,7 @@
     "dotenv": "^16.5.0",
     "firebase": "^11.7.1",
     "firebase-admin": "^13.3.0",
-    "framer-motion": "^12.10.4",
+    "framer-motion": "^12.23.0",
     "isbot": "^5.1.27",
     "lucide-react": "^0.511.0",
     "mapillary-js": "^4.1.2",

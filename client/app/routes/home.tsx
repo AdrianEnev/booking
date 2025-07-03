@@ -4,8 +4,10 @@ import { useNavigate } from 'react-router'
 import Location from "@components/home/Location";
 import { Footer } from "@components/footer/Footer";
 import Services from "@components/home/Services";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import getDimensions from "@use/getDimensions";
+import { motion } from "framer-motion";
+import { useIntersectionObserver } from "~/use/io/useIntersectionObserver";
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -41,9 +43,32 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             window.removeEventListener("resize", handleResize);
         };
     }, []);
+
+    // Handle animations
+    const servicesRef = useRef<HTMLDivElement | null>(null);
+    const [servicesVisible, setServicesVisible] = useState(false);
+
+    const locationRef = useRef<HTMLDivElement | null>(null);
+    const [locationVisible, setLocationVisible] = useState(false);
+
+    useIntersectionObserver(
+        servicesRef,
+        () => setServicesVisible(true),
+        { root: null, rootMargin: "0px 0px -100px 0px", threshold: 0 }
+    );
+
+    useIntersectionObserver(
+        locationRef,
+        () => setLocationVisible(true),
+        { root: null, rootMargin: "0px 0px -100px 0px", threshold: 0 }
+    );
     
     return (
-        <div className="w-full h-full px-[10%] md:pt-16 mb-16 font-manrope">
+        <motion.div className="w-full h-full px-[10%] md:pt-16 mb-16 font-manrope"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+        >
             <div className="w-full h-full 2xl:h-[90%] 4xl:h-full flex flex-col md:flex-row md:justify-between"> 
                 <div className="flex flex-col gap-y-3 md:gap-y-5 w-full h-1/2 md:h-full justify-center md:mt-[-3%]">
 
@@ -76,9 +101,9 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             </div>
 
             <div className="w-full h-1 rounded-full bg-gray-100 mb-4"></div>
-            <Services />
+            <Services servicesRef={servicesRef} servicesVisible={servicesVisible} />
             <div className="w-full h-1 rounded-full bg-gray-100 mb-4"></div>
-            <Location />
+            <Location locationRef={locationRef} locationVisible={locationVisible}/>
             <div className="w-full h-1 rounded-full bg-gray-100 mt-4"></div>
             <div className="my-4 flex justify-center">
                 <button className="w-60 h-16 rounded-lg bg-[#4a6fa5] shadow-lg border border-gray-100 hover:opacity-60"
@@ -94,6 +119,6 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             <footer>
                 <Footer />
             </footer>
-        </div>
+        </motion.div>
     )
 }

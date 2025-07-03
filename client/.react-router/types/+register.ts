@@ -9,15 +9,6 @@ declare module "react-router" {
 type Params = {
   "/": {};
   "/booking": {};
-  "/booking/services/:date/:hour": {
-    "date": string;
-    "hour": string;
-  };
-  "/booking/services/:date/:hour/:service": {
-    "date": string;
-    "hour": string;
-    "service": string;
-  };
   "/login": {};
   "/account": {};
   "/admin/dashboard": {};

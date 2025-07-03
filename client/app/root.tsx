@@ -106,16 +106,16 @@ function AppContent() {
         <div className="relative w-screen h-screen overflow-hidden">
             {/* Blur overlay */}
             <motion.div
-                    className="absolute top-0 left-0 w-full h-full z-10 pointer-events-none"
-                    animate={{
-                        backdropFilter: loading ? 'blur(10px)' : 'blur(0px)',
-                        backgroundColor: loading
-                            ? 'rgba(255,255,255,0.2)'
-                            : 'rgba(255,255,255,0)',
-                    }}
-                    transition={{ duration: 0.5 }}
-                    style={{
-                        WebkitBackdropFilter: loading ? 'blur(10px)' : 'blur(0px)',
+                className="absolute top-0 left-0 w-full h-full z-10 pointer-events-none"
+                animate={{
+                    backdropFilter: loading ? 'blur(10px)' : 'blur(0px)',
+                    backgroundColor: loading
+                        ? 'rgba(255,255,255,0.2)'
+                        : 'rgba(255,255,255,0)',
+                }}
+                transition={{ duration: 0.5 }}
+                style={{
+                    WebkitBackdropFilter: loading ? 'blur(10px)' : 'blur(0px)',
                     }}
             />
         

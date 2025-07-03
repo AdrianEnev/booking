@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import bookAppointment from '@use/booking/post/useBookAppointment';
 import { standardizeDate } from '~/use/credentials/useStandardizeDate';
+import { motion } from 'framer-motion';
 
 interface CustomCalendarCheckoutProps {
     selectedDate: Date,
@@ -11,11 +12,13 @@ interface CustomCalendarCheckoutProps {
     setLoading: (loading: boolean) => void;
     navigate: any;
     isAdmin: boolean;
+    customCalendarCheckoutAnimationRan?: boolean;
+    setCustomCalendarCheckoutAnimationRan?: (ran: boolean) => void;
 }
 
 function CustomCalendarCheckout({
     selectedDate, selectedHour, selectedService, setSelectedService,
-    loading, setLoading, navigate, isAdmin
+    loading, setLoading, navigate, isAdmin, customCalendarCheckoutAnimationRan, setCustomCalendarCheckoutAnimationRan
 }: CustomCalendarCheckoutProps) {
     
     const [formData, setFormData] = useState({
@@ -58,8 +61,16 @@ function CustomCalendarCheckout({
     };
 
     return (
-        <div
+        <motion.div
             className='w-full h-[93%] bg-white rounded-xl shadow-lg border border-gray-300 font-manrope'
+            initial={customCalendarCheckoutAnimationRan ? {} : { scale: 0.5 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.3 }}
+            onAnimationComplete={() => {
+                if (!customCalendarCheckoutAnimationRan && setCustomCalendarCheckoutAnimationRan) {
+                    setCustomCalendarCheckoutAnimationRan(true);
+                }
+            }}
         >
             {/* Header */}
             <div className='w-full h-[8%] bg-[#f8f8f8] rounded-x-xl rounded-t-xl border-b border-gray-300 flex flex-row items-center gap-x-6'>
@@ -67,7 +78,8 @@ function CustomCalendarCheckout({
                     hover:opacity-40 transition-colors duration-200 cursor-pointer
                 '
                     onClick={() => {
-                        setSelectedService('')
+                        setSelectedService('');
+                        setCustomCalendarCheckoutAnimationRan!(false);
                     }}
                 >
                     <p className='text-4xl text-[#4a6fa5]'>{'<'}</p>
@@ -139,7 +151,7 @@ function CustomCalendarCheckout({
                     </button>
                 </form>
             </div>
-        </div>
+        </motion.div>
     );
 }
 

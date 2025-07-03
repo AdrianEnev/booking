@@ -1,8 +1,13 @@
-import React from 'react'
+import { motion } from 'framer-motion'
 
-function Services() {
+function Services({servicesRef, servicesVisible}: any) {
     return (
-        <div className='w-full'>
+        <motion.div className='w-full'
+            ref={servicesRef}
+            initial={{ opacity: 0, y: 30 }}
+            animate={servicesVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+        >
             <p className="text-4xl text-gray-700 font-medium my-2">Услуги</p>
             
             <div className='w-full h-full flex flex-col gap-y-3 md:gap-y-0 md:flex-row md:justify-between pb-8 pt-4'>
@@ -31,7 +36,7 @@ function Services() {
                     <p className='sm:text-lg md:text-xl font-medium text-center text-[#4a6fa5] mb-2'>Дълги прически</p>
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
 
