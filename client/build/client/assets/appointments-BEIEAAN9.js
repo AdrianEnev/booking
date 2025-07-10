@@ -1,0 +1,1 @@
+import{w as n}from"./with-props-Bh_-DjLQ.js";import{p as s,a,o as e}from"./chunk-AYJ5UCUI-DsV8cjzK.js";import{u as i}from"./GlobalContext-BODhfs1P.js";const f=n(function(){const{isAdmin:t}=i(),o=s();return a.useEffect(()=>{if(!t){o("/");return}},[]),e.jsx("div",{children:"admin - appointments"})});export{f as default};
